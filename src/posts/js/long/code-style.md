@@ -44,18 +44,25 @@ summary:
 Когда код набран в разных стилях, мы прилагаем больше усилий на его чтение. Это очень похоже на приём шумного сигнала или чтение неразборчивого почерка — нам нужно сперва разобрать конкретную букву, потом найти их соединение, и только потом мы сможем прочесть всё слово целиком.
 
 <figure>
-  <img src="/assets/images/posts/js/code-style/bad-script.jpg"/>
+  <img src="/assets/images/posts/js/code-style/bad-script.jpg" width="1020" height="611">
   <figcaption>«Пример неразборчивого почерка. Такое читать очень трудно, потому что надо тратить время на “парсинг” каждой буквы.»</figcaption>
 </figure>
 
 Так же трудно читать и код, написанный в нескольких стилях одновременно:
 
-<figure>
-  <img src="/assets/images/posts/js/code-style/bad-code-style.png"/>
-  <figcaption>Когда имена набраны по-разному, трудно понять, какую сущность отражает каждое имя</figcaption>
-</figure>
+```js
+const ThisIsExample=42
+class someclass{constructor(a,b,anotherArgument){this.a=a; this.b=   b;
+this.c =anotherArgument}
+}  function another_style_name(butArguments,ForSomeReason,
+are_written_alternatively){
+// no indentation here...
+let a = butArguments
+  - are_written_alternatively;
+}
+```
 
-Если код написан в одном стиле, в именах переменных и функций проявляется структура и система. Это позволяет читать код быстрее; мы как будто прочитываем сразу всё слово в разборчивом тексте. Также это добавляет больше информации о контексте:
+Когда имена набраны по-разному, трудно понять, какую сущность отражает каждое имя. Если же код написан в одном стиле, в именах переменных и функций проявляется структура и система. Это позволяет читать код быстрее; мы как будто прочитываем сразу всё слово в разборчивом тексте. Также это добавляет больше информации о контексте:
 
 ```js
 const justVariable = "Просто переменная, функция или локальная константа"
@@ -81,10 +88,20 @@ const SOME_CONFIGURATION_CONSTANT = "Глобальная константа"
 
 Однако, точка с запятой — это не только дело вкуса. Отсутствие `;` в некоторых местах может сильно изменить поведение кода:
 
-<figure>
-  <img src="/assets/images/posts/js/code-style/no-semicolon.png"/>
-  <figcaption>Без точки с запятой код интерпретируется иначе, что приводит к ошибке</figcaption>
-</figure>
+```js
+// Вызов функции:
+console.log(2)
+
+// Работа с массивом:
+[1, 2].map(num => num * 2)
+
+// Но из-за отсутствия ";" на 1-й строке
+// этот код на самом деле становится таким:
+console.log(2)[1, 2].map(num => num * 2)
+
+// Что приводит к ошибке:
+// Uncaught TypeError: Cannot read property '2' of undefined.
+```
 
 Также при отсутствии точки с запятой мы можем случайно вернуть `undefined` вместо нужного результата из функции:
 
@@ -95,13 +112,9 @@ function theMeaningOfLife() {
 }
 
 theMeaningOfLife() // undefined
-
-// Функция возвращает не 42,
-// а undefined, потому что перенос после return
-// рассматривается, как конец строки.
 ```
 
-Заданный и единый стиль кода позволяет избежать подобных ошибок.
+Функция `theMeaningOfLife` возвращает не `42`, а `undefined`, потому что перенос после `return` рассматривается, как конец строки. Заданный и единый стиль кода позволяет избежать подобных ошибок.
 
 ### Ревью проходит быстрее
 
@@ -145,10 +158,17 @@ theMeaningOfLife() // undefined
 
 Одни из самых популярных среди JS-разработчиков — это [EditorConfig](https://editorconfig.org) и [Prettier](https://prettier.io). Второй можно даже [попробовать онлайн](https://prettier.io/playground/)!
 
-<figure>
-  <img src="/assets/images/posts/js/code-style/prettier-at-work.png"/>
-  <figcaption>Prettier при сохранении превращает «сырой» код (слева) в код с форматированием (справа)</figcaption>
-</figure>
+```js
+// 1) Такой код:
+console.log(2)
+[1,2].map(num => num*2)
+
+// 2) Станет таким:
+console.log(2);
+[1, 2].map(num => num * 2);
+```
+
+Prettier при сохранении превращает «сырой» код (1 на примере выше) в код с форматированием (2). Это автоматически исключает возможность неправильной интерпретации кода.
 
 Форматтеры снимают с разработчиков головную боль форматирования кода:
 
@@ -169,7 +189,7 @@ theMeaningOfLife() // undefined
 Если нам нужно проследить, чтобы названия переменных были написаны в `camelCase`, мы используем линтер. При неправильном написании линтер подсветит название переменной, а при наведении скажет, в чём проблема.
 
 <figure>
-  <img src="/assets/images/posts/js/code-style/linter-at-work.png"/>
+  <img src="/assets/images/posts/js/code-style/linter-at-work.png" width="1159" height="132">
   <figcaption>Если мы укажем в правилах, что нам нужен <code>camelCase</code> в названии, линтер <a href="https://eslint.org/demo#eyJ0ZXh0IjoidmFyIHNvbWVfZXhhbXBsZSA9ICdiYXInOyIsIm9wdGlvbnMiOnsicGFyc2VyT3B0aW9ucyI6eyJlY21hVmVyc2lvbiI6NSwic291cmNlVHlwZSI6InNjcmlwdCIsImVjbWFGZWF0dXJlcyI6e319LCJydWxlcyI6eyJjb25zdHJ1Y3Rvci1zdXBlciI6MiwiZm9yLWRpcmVjdGlvbiI6MiwiZ2V0dGVyLXJldHVybiI6Miwibm8tYXN5bmMtcHJvbWlzZS1leGVjdXRvciI6Miwibm8tY2FzZS1kZWNsYXJhdGlvbnMiOjIsIm5vLWNsYXNzLWFzc2lnbiI6Miwibm8tY29tcGFyZS1uZWctemVybyI6Miwibm8tY29uZC1hc3NpZ24iOjIsIm5vLWNvbnN0LWFzc2lnbiI6Miwibm8tY29uc3RhbnQtY29uZGl0aW9uIjoyLCJuby1jb250cm9sLXJlZ2V4IjoyLCJuby1kZWJ1Z2dlciI6Miwibm8tZGVsZXRlLXZhciI6Miwibm8tZHVwZS1hcmdzIjoyLCJuby1kdXBlLWNsYXNzLW1lbWJlcnMiOjIsIm5vLWR1cGUtZWxzZS1pZiI6Miwibm8tZHVwZS1rZXlzIjoyLCJuby1kdXBsaWNhdGUtY2FzZSI6Miwibm8tZW1wdHkiOjIsIm5vLWVtcHR5LWNoYXJhY3Rlci1jbGFzcyI6Miwibm8tZW1wdHktcGF0dGVybiI6Miwibm8tZXgtYXNzaWduIjoyLCJuby1leHRyYS1ib29sZWFuLWNhc3QiOjIsIm5vLWV4dHJhLXNlbWkiOjIsIm5vLWZhbGx0aHJvdWdoIjoyLCJuby1mdW5jLWFzc2lnbiI6Miwibm8tZ2xvYmFsLWFzc2lnbiI6Miwibm8taW1wb3J0LWFzc2lnbiI6Miwibm8taW5uZXItZGVjbGFyYXRpb25zIjoyLCJuby1pbnZhbGlkLXJlZ2V4cCI6Miwibm8taXJyZWd1bGFyLXdoaXRlc3BhY2UiOjIsIm5vLW1pc2xlYWRpbmctY2hhcmFjdGVyLWNsYXNzIjoyLCJuby1taXhlZC1zcGFjZXMtYW5kLXRhYnMiOjIsIm5vLW5ldy1zeW1ib2wiOjIsIm5vLW9iai1jYWxscyI6Miwibm8tb2N0YWwiOjIsIm5vLXByb3RvdHlwZS1idWlsdGlucyI6Miwibm8tcmVkZWNsYXJlIjoyLCJuby1yZWdleC1zcGFjZXMiOjIsIm5vLXNlbGYtYXNzaWduIjoyLCJuby1zZXR0ZXItcmV0dXJuIjoyLCJuby1zaGFkb3ctcmVzdHJpY3RlZC1uYW1lcyI6Miwibm8tc3BhcnNlLWFycmF5cyI6Miwibm8tdGhpcy1iZWZvcmUtc3VwZXIiOjIsIm5vLXVuZGVmIjoyLCJuby11bmV4cGVjdGVkLW11bHRpbGluZSI6Miwibm8tdW5yZWFjaGFibGUiOjIsIm5vLXVuc2FmZS1maW5hbGx5IjoyLCJuby11bnNhZmUtbmVnYXRpb24iOjIsIm5vLXVudXNlZC1sYWJlbHMiOjIsIm5vLXVudXNlZC12YXJzIjoyLCJuby11c2VsZXNzLWNhdGNoIjoyLCJuby11c2VsZXNzLWVzY2FwZSI6Miwibm8td2l0aCI6MiwicmVxdWlyZS15aWVsZCI6MiwidXNlLWlzbmFuIjoyLCJ2YWxpZC10eXBlb2YiOjIsImNhbWVsY2FzZSI6Mn0sImVudiI6e319fQ==">найдёт неправильные написания</a></figcaption>
 </figure>
 
