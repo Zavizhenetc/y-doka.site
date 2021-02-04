@@ -22,8 +22,6 @@ summary:
 
 ## Пример
 
-{% demo "/height/basic", "Высота для блока", 150 %}
-
 ```html
 <div class="container">
   <div class="item"></div>
@@ -43,6 +41,8 @@ summary:
   background-color: #FFFFFF;
 }
 ```
+
+{% demo "/height/basic", "Высота для блока", 150 %}
 
 Поскольку оба блока — `.container` и `.item` — пустые, в них нет контента, то без стилей их высота будет равна нулю. Мы изменили это, задав элементу `.container` высоту `150px`, а элементу `.item` высоту `50px`.
 

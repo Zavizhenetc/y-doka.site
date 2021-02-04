@@ -14,7 +14,6 @@ p {
   margin: 0;
   border: 1px solid #3b3e44;
   font-size: 18px;
-  transition: text-decoration-color 0.3s;
 }
 
 p + p {
@@ -62,14 +61,14 @@ p:after {
   text-decoration-style: wavy;
 }
 
-.blue:hover {
+.blue {
   text-decoration-color: #1a5ad7;
 }
 
-.red:hover {
+.red {
   text-decoration-color: #ed6742;
 }
 
-.green:hover {
+.green {
   text-decoration-color: #49a16c;
 }

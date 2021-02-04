@@ -5,6 +5,7 @@ body {
   margin: 0;
   text-align: center;
   background-color: #e6e6e6;
+  overflow-y: hidden;
 }
 
 .btn {
@@ -25,7 +26,9 @@ body {
 }
 
 .btn:focus {
-  outline: none;
-  box-shadow: inset 0px 0 0px 2px #e6e6e6;
+  box-shadow: inset 0px 0 0px 3px #e6e6e6;
+  border-radius: 8px;
+  outline: 3px solid #e6e6e6;
+  outline-offset: -3px;
   transition: all 0.2s;
 }

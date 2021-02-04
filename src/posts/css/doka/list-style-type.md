@@ -24,9 +24,9 @@ summary:
 
 Вообще, свойство `list-style-type` можно задать как самому элементу `<ul>` или `<ol>` (благодаря тому, что это свойство наследуется «вглубь»), так и его `<li>`-элементу и вообще любой сущности, у которой задано свойство `display: list-item`.
 
-{% demo "/list-style-type/", "Варианты list-style-type", 890 %}
+### Демо разных значений `list-style-type`
 
-Примеры разных значений `list-style-type`
+{% demo "/list-style-type/", "Варианты list-style-type", 890 %}
 
 ## Как пишется
 
@@ -105,22 +105,61 @@ ul {
 </ul>
 ```
 
+{% demo "/list-style-type/ul-no-marker", "Список без маркера", 190 %}
+
 ```html
 <!-- Пример вёрстки списка статей или товаров -->
 <ol style="list-style-type: none">
   <li>
-    <article>…</article>
+    <article>
+      <h2>Обзор кафе «Тарелко эль Торреро»</h2>
+      <address>Григорий Гаспатчев</address>
+    </article>
   </li>
   <li>
-    <article>…</article>
+    <article>
+      <h2>Заказываем пиццу из «Саранчи»</h2>
+      <address>Мария Пепперони</address>
+    </article>
   </li>
   <li>
-    <article>…</article>
+    <article>
+      <h2>Где попробовать тэппанъяки?</h2>
+      <address>Василиса Васаби</address>
+    </article>
   </li>
 </ol>
 ```
 
-Так же, устанавливая `list-style-type: none` можно создать стилизованные списки, главное не забыть прописать свойство [content](/css/doka/content)
+{% demo "/list-style-type/ol-no-marker", "Список без маркера", 260 %}
+
+Так же, устанавливая `list-style-type: none` можно создать стилизованные списки, главное не забыть прописать свойство [content](/css/doka/content):
+
+```html
+<ul>
+  <li>Милый маленький грибочек</li>
+  <li>Сколопендровый листочек</li>
+  <li>Жёлтой пыльки чуть</li>
+</ul>
+```
+
+```css
+li {
+  position: relative;
+}
+
+li:before {
+  /* не забываем о свойстве content */
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ed6742;
+  position: absolute;
+  left: -25px;
+  top: 5px;
+}
+```
 
 {% demo "/list-style-type/empty-content", "Пример со свойством content", 195 %}
 
@@ -142,6 +181,12 @@ ul {
 }
 ```
 
+### Результат
+
 {% demo "/list-style-type/custom", "Кастомные маркеры", 270 %}
+
+### Результат в Mozilla Firefox
+
+![Кастомные маркеры в Firefox](/assets/images/posts/list-style-type/custom-list.png)
 
 {% include "authors/Roman_Ganin/author.njk" %}

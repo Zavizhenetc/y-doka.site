@@ -40,7 +40,18 @@ CSS
 
 Обрати внимание, что мы _сбросили_ стандартную рамку кнопки, но углы тем не менее слегка закруглились.
 
-Если добавить кнопке внутреннюю тень и интересную реакцию на нажатие, то получится привлекательно и современно 😉
+Если при нажатии добавлять кнопке внутреннюю тень такого же цвета, что и фон, она будет "нажиматься" — получится привлекательно и современно 😉
+
+```css
+body {
+  background-color: #e6e6e6;
+}
+
+.btn:focus {
+  box-shadow: inset 0px 0 0px 3px #e6e6e6;
+  transition: all 0.2s;
+}
+```
 
 {% demo "/border-radius/interactive", "Интерактивная кнопка", 140 %}
 
@@ -88,21 +99,26 @@ selector {
 HTML
 
 ```html
-<div class="text" data-msg="3">Сообщения</div>
+<button class="icon" data-notifications="3"></button>
 ```
 
 CSS
 
 ```css
-.text:after {
-  content: attr(data-msg);
-  width: 31px; /* равные ширина */
-  height: 31px; /* и высота */
+.icon {
+  background-image: url(eyes.png);
+}
+
+.icon:after {
+  content: attr(data-notifications);
+  width: 25px; /* равные ширина */
+  height: 25px; /* и высота */
   border-radius: 50%; /* закругляем углы на 50% */
-  color: #1A5AD7;
+  color: #ffffff;
+  background-color: #ed4242;
 }
 ```
 
-{% demo "/border-radius/counter", "Счётчик", 135 %}
+{% demo "/border-radius/notification", "Счётчик уведомлений", 135 %}
 
 {% include "authors/ABatickaya/author.njk" %}

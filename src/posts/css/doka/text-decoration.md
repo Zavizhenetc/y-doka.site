@@ -88,7 +88,9 @@ selector {
 }
 ```
 
-Стиль линии можно указать отдельно при помощи свойства `text-decoration-style`. [Пример](https://codepen.io/solarrust/pen/ywqvgd?editors=1100)
+Стиль линии можно указать отдельно при помощи свойства `text-decoration-style`.
+
+{% demo "/text-decoration/style", "Стиль линии декора текста", 600 %}
 
 Цвет линии по умолчанию совпадает с цветом текста, для которого задаётся свойство `text-decoration`.
 
@@ -102,7 +104,9 @@ selector {
 }
 ```
 
-Цветом линии можно управлять отдельно при помощи свойства `text-decoration-color`. [Пример](#example)
+Цветом линии можно управлять отдельно при помощи свойства `text-decoration-color`:
+
+{% demo "/text-decoration/style-color", "Стиль и цвет линии декора текста", 730 %}
 
 ## Подсказки
 
@@ -116,6 +120,17 @@ selector {
 
 Пусть по умолчанию цвет линий будет совпадать с цветом текста, а по наведению курсора цвет будет меняться на другой за 0.3 секунды.
 
+HTML
+
+```html
+<div class="parent">
+  <p class="none">К диакритикам...</p>
+  <p class="underline">Дополнение подчеркивается...</p>
+  <p class="line-through">Эпанортозис...</p>
+  <p class="overline">В большинстве языков...</p>
+</div>
+```
+
 CSS
 
 ```css
@@ -123,9 +138,46 @@ p {
   transition: text-decoration-color 0.3s;
 }
 
-.blue:hover {
-  text-decoration-color: blue;
+.none {
+  text-decoration: none;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.overline {
+  text-decoration: overline;
+}
+
+.dotted {
+  text-decoration-style: dotted;
+}
+
+.double {
+  text-decoration-style: double;
+}
+
+.wavy {
+  text-decoration-style: wavy;
+}
+
+.blue:hover {
+  text-decoration-color: #1a5ad7;
+}
+
+.red:hover {
+  text-decoration-color: #ed6742;
+}
+
+.green:hover {
+  text-decoration-color: #49a16c;
+}
+
 ```
 
 <a name="example"></a>

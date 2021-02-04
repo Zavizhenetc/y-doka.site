@@ -31,7 +31,7 @@ summary:
 }
 ```
 
-{% demo "/visibility/", "Свойство visibility", 350 %}
+{% demo "/visibility/text", "Свойство visibility", 350 %}
 
 Обратите внимание, что скрытый параграф всё равно влияет на поток документа и занимает отведённое ему место.
 
@@ -83,8 +83,10 @@ HTML
 
 ```html
 <div class="parent">
-  <div class="block">Я простой текст. Наводишь кнопку и я показываюсь</div>
+  <div class="block">Я простой текст. Наводишь курсор и я показываюсь</div>
 </div>
 ```
+
+{% demo "/visibility/trick", "Свойство visibility", 160 %}
 
 {% include "authors/ABatickaya/author.njk" %}

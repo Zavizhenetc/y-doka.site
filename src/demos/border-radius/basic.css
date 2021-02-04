@@ -5,6 +5,7 @@ body {
   margin: 0;
   text-align: center;
   background-color: #e6e6e6;
+  overflow-y: hidden;
 }
 
 .btn {
